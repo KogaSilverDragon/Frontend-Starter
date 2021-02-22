@@ -1,0 +1,112 @@
+<nav class="navbar is-dark is-mobile">
+  <div class="navbar-brand is-justify-content-center">
+    <a class="navbar-item title is-4 mb-0"
+       routerLink="/">Hardvare Shop</a>
+
+    <a role="button"
+       class="navbar-burger"
+       aria-label="menu"
+       aria-expanded="false"
+       data-target="navbarHardvare"
+       (click)="toggleMenu()">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarHardvare"
+       class="navbar-menu"
+       [ngClass]="{ 'is-active': menuOpen }">
+    <div class="navbar-start">
+      <a class="navbar-item"
+         routerLink="/">Home</a>
+    </div>
+
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="field is-grouped">
+          <p class="control"
+             *ngIf="currentUser && currentUser.hasAccessR">
+            <a class="button is-info"
+               routerLink="/admin">
+              <span class="icon">
+                <i class="mdi mdi-account-cog"></i>
+              </span>
+              <span>Admin Panel</span>
+            </a>
+          </p>
+          <p class="control"
+             *ngIf="!currentUser">
+            <a class="button is-info"
+               routerLink="/login">
+              <span class="icon">
+                <i class="mdi mdi-account"></i>
+              </span>
+              <span>Log in</span>
+            </a>
+          </p>
+          <p class="control"
+             *ngIf="currentUser">
+            <a class="button is-danger"
+               (click)="logout()">
+              <span class="icon">
+                <i class="mdi mdi-account"></i>
+              </span>
+              <span>Log out</span>
+            </a>
+          </p>
+        </div>
+      </div>
+      <div class="navbar-item has-dropdown p-3"
+           [ngClass]="{ 'is-active': cartOpen }"
+           *ngIf="currentUser?.orders">
+        <p class="control">
+          <a class="button is-primary"
+             (click)="toggleCart()">
+            <span class="icon">
+              <i class="mdi mdi-cart"></i>
+            </span>
+            <span>Shopping cart</span>
+          </a>
+        </p>
+
+        <div class="navbar-dropdown is-right product-cart">
+          <div *ngFor="let order of currentUser?.orders">
+            <div class="navbar-item product-item"
+                 [ngClass]="{ 'is-unavailable': !orderItem.product }"
+                 *ngFor="let orderItem of order.products">
+              <div class="product-data">
+                <span class="product-data-name">
+                  {{orderItem.product ? orderItem.product.name : 'Product unavailable (ID: '+ orderItem.id +')'}}
+                </span>
+                <input type="number"
+                       class="input is-small product-data-quantity"
+                       min="1"
+                       max="999"
+                       *ngIf="orderItem.product"
+                       [ngModel]="orderItem.quantity"
+                       (ngModelChange)="updateItem($event, orderItem)"
+                       (blur)="updateItem($event, orderItem)">
+              </div>
+              <div class="product-price">
+                <span class="is-size-7 product-price-discount">Discount: {{orderItem.discount}}%</span>
+                <span class="is-size-7 product-price-total">
+                  Total: <span class="product-price-total-discount">{{orderItem.totalPrice}}</span>
+                  {{orderItem.discountPrice}}</span>
+              </div>
+              <div class="buttons is-right">
+                <button class="button is-small is-danger"
+                        (click)="removeItem(order, orderItem)">Remove</button>
+              </div>
+            </div>
+            <hr class="navbar-divider">
+          </div>
+          <div class="navbar-item">
+            Total: {{getTotal()}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

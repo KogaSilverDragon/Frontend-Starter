@@ -1,0 +1,40 @@
+@import "~bulma/sass/utilities/initial-variables";
+
+.product {
+  &-cart {
+    min-width: 25rem;
+  }
+  &-item {
+    white-space: normal;
+    display: block;
+    border-bottom: 1px solid $grey-lightest;
+
+    &:last-of-type { border-bottom: 0; }
+    &.is-unavailable {
+      background-color: $grey-lighter;
+    }
+  }
+  &-data {
+    display: flex;
+
+    &-name { flex: 1 1 auto; }
+    &-quantity {
+      flex: 0 0 2rem;
+
+      &::-webkit-inner-spin-button,
+      &::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+    }
+  }
+  &-price {
+    &-discount, &-total { display: block; }
+    &-total {
+      &-discount {
+        color: $grey-light;
+        text-decoration: line-through;
+      }
+    }
+  }
+}

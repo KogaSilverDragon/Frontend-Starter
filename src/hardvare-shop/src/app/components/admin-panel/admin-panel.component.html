@@ -1,0 +1,83 @@
+<section class="section">
+  <h2 class="title">Administration</h2>
+  <div class="columns">
+    <div class="column is-6">
+      <div class="is-flex is-justify-content-space-between mb-3">
+        <h3 class="title is-5 mb-0">Users</h3>
+        <div class="buttons is-right">
+          <a class="button is-primary is-small"
+             routerLink="user">Add</a>
+        </div>
+      </div>
+      <div class="columns is-multiline">
+        <div class="column is-12"
+             *ngFor="let user of users">
+          <div class="card">
+            <div class="card-content">
+              <div class="media">
+                <div class="media-left">
+                  <span class="icon is-right">
+                    <i class="mdi mdi-36px mdi-account-circle"></i>
+                  </span>
+                </div>
+                <p class="title is-5">{{user.name}}</p>
+              </div>
+            </div>
+            <footer class="card-footer">
+              <a class="card-footer-item" [routerLink]="['user', user.id]">Edit</a>
+              <a class="card-footer-item has-text-danger"
+                 (click)="delete(user)">Delete</a>
+            </footer>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="column is-6">
+      <div class="is-flex is-justify-content-space-between mb-3">
+        <h3 class="title is-5 mb-0">Products</h3>
+        <div class="buttons is-right">
+          <a class="button is-primary is-small"
+                  routerLink="product">Add</a>
+        </div>
+      </div>
+      <div class="columns is-multiline">
+        <div class="column is-12"
+             *ngFor="let product of products">
+          <div class="card">
+            <div class="card-content">
+              <div class="media">
+                <div class="media-left">
+                    <span class="icon is-right">
+                      <i class="mdi mdi-36px mdi-account-circle"></i>
+                    </span>
+                </div>
+                <p class="title is-5">{{product.name}}</p>
+              </div>
+            </div>
+            <footer class="card-footer">
+              <a class="card-footer-item" [routerLink]="['product', product.id]">Edit</a>
+              <a class="card-footer-item has-text-danger"
+                 (click)="delete(product)">Delete</a>
+            </footer>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="modal"
+     [ngClass]="{ 'is-active': deleteItem }">
+  <div class="modal-background"></div>
+  <div class="modal-content">
+    <div class="box">
+      <p class="block">Are you sure you want to delete <b>{{deleteItem?.name}}</b>?</p>
+      <div class="buttons is-justify-content-space-between">
+        <button class="button"
+                (click)="cancelDelete()">Cancel</button>
+        <button class="button is-danger"
+                (click)="confirmDelete()">Delete</button>
+      </div>
+    </div>
+  </div>
+  <button class="modal-close is-large" aria-label="close"></button>
+</div>

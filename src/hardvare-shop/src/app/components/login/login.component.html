@@ -1,0 +1,24 @@
+<section class="section">
+  <h2 class="title">Log in</h2>
+  <p class="subtitle">Select a user to proceed</p>
+  <div class="columns is-multiline">
+    <div class="column is-half"
+         *ngFor="let user of users">
+      <div class="card is-clickable"
+           role="link"
+           [attr.aria-roledescription]="'Log in as ' + user.name"
+           (click)="login(user)">
+        <div class="card-content">
+          <div class="media">
+            <div class="media-left">
+              <span class="icon is-right">
+                <i class="mdi mdi-36px mdi-account-circle"></i>
+              </span>
+            </div>
+            <p class="title is-5">{{user.name}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

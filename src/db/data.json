@@ -35,6 +35,12 @@
       "description": " This is a very nice Sand Paper, High grit.",
       "price": 100,
       "id": 7
+    },
+    {
+      "id": 8,
+      "name": "Cog",
+      "description": "Screeeew",
+      "price": 100
     }
   ],
   "users": [
@@ -87,6 +93,7 @@
       "id": 7
     },
     {
+      "id": 8,
       "name": "Test User 5",
       "access": "R,W",
       "orders": [
@@ -95,20 +102,73 @@
           "products": [
             {
               "id": 6,
-              "quantity": 20,
-              "totalPrice": 342,
-              "discount": 60
+              "quantity": 3,
+              "totalPrice": 300,
+              "discount": 60,
+              "product": {
+                "id": 6,
+                "name": "Paint Brush",
+                "description": "Paint Brush for good price",
+                "price": 100
+              }
             },
             {
-              "id": 12,
-              "quantity": 2,
-              "totalPrice": 176,
-              "discount": 54
+              "id": 4,
+              "quantity": 10,
+              "totalPrice": 1000,
+              "discount": 0,
+              "product": {
+                "id": 4,
+                "name": "Hard wood floor",
+                "description": "Oak wood flooring for good price",
+                "price": 100
+              }
+            },
+            {
+              "id": 1,
+              "quantity": 3,
+              "totalPrice": 600,
+              "discount": 0,
+              "product": {
+                "id": 1,
+                "name": "Hammer",
+                "description": " This is a very nice Hammer",
+                "price": 200
+              }
+            },
+            {
+              "id": 2,
+              "quantity": 5,
+              "totalPrice": 500,
+              "discount": 0,
+              "product": {
+                "id": 2,
+                "name": "Nails",
+                "description": " This is a very nice Nails",
+                "price": 100
+              }
+            },
+            {
+              "id": 8,
+              "quantity": 1,
+              "totalPrice": 100,
+              "discount": 0,
+              "product": {
+                "id": 8,
+                "name": "Screw",
+                "description": "Screeeew",
+                "price": 100
+              }
             }
           ]
         }
-      ],
-      "id": 8
+      ]
+    },
+    {
+      "id": 9,
+      "name": "New User",
+      "access": "R",
+      "orders": []
     }
   ]
 }

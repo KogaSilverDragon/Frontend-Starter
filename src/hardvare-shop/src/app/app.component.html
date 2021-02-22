@@ -1,0 +1,6 @@
+<app-header [currentUser]="currentUser"
+            (logoutUser)="logoutUser()"
+            *ngIf="!hideHeader"></app-header>
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
